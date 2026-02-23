@@ -23,9 +23,9 @@ const config = {
 async function conectarDB() {
     try {
         await sql.connect(config);
-        console.log('✅ Conectado a SQL Server con Windows Auth');
+        console.log('Conectado a SQL Server con Windows Auth');
     } catch (err) {
-        console.log('❌ Error de conexión:');
+        console.log('Error de conexión:');
         console.log(err);
     }
 }
@@ -34,7 +34,7 @@ conectarDB();
 
 // 🔹 Ruta de prueba
 app.get('/', (req, res) => {
-    res.send('🌎 API Clean World funcionando correctamente');
+    res.send('API Clean World funcionando correctamente');
 });
 
 // 🔹 REGISTRO DE USUARIOS
@@ -59,21 +59,21 @@ app.post('/registro', async (req, res) => {
                 VALUES (@nombre, @email, @password)
             `);
 
-        res.json({ mensaje: 'Usuario registrado correctamente ✅' });
+        res.json({ mensaje: 'Usuario registrado correctamente' });
 
     } catch (error) {
 
         // Error de correo duplicado
         if (error.number === 2627) {
-            return res.status(400).json({ error: 'El correo ya está registrado ⚠️' });
+            return res.status(400).json({ error: 'El correo ya está registrado' });
         }
 
         console.log(error);
-        res.status(500).json({ error: 'Error al registrar usuario ❌' });
+        res.status(500).json({ error: 'Error al registrar usuario' });
     }
 });
 
 // 🔹 INICIAR SERVIDOR
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Servidor en http://localhost:${PORT}`);
+    console.log(`Servidor en http://localhost:${PORT}`);
 });
